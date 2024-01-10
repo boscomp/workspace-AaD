@@ -25,7 +25,7 @@ import ej05.service.CityService;
 import ej05.service.NotFoundException;
 import ej05.service.ServerErrorException;
 
-
+@
 @SpringBootApplication
 @EnableAutoConfiguration
 @RestController
