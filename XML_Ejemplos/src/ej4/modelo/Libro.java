@@ -4,13 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Libro {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+import eje10.modelo.Libros;
+@JacksonXmlRootElement(localName="libro")
+public class Libro {
+	@JacksonXmlProperty(isAttribute = true)
 	private Integer isbn;
 	private String titulo;
+	@JacksonXmlElementWrapper(localName = "autores") // nombre del padre
+	@JsonProperty("autor") //cambiar cada uno a alumno
 	private List<String> autores;
+	@JacksonXmlElementWrapper(localName = "ediciones") // nombre del padre
+	@JsonProperty("edicion") //cambiar cada uno a alumno
 	private List<Edicion> ediciones;
 	
+	private List<Libros> libros;
 	public Libro() {
 		
 	}

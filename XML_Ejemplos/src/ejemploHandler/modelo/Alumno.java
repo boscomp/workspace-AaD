@@ -1,10 +1,14 @@
 package ejemploHandler.modelo;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
+
 public class Alumno {
 
 	
-
+	@JacksonXmlProperty(isAttribute = true)
 		private String dni;
+	@JacksonXmlText
 		private String nombre;
 		
 		public Alumno(String dni, String nombre) {
