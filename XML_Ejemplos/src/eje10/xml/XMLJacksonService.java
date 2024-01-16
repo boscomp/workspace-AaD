@@ -28,5 +28,20 @@ public class XMLJacksonService {
 			throw new LibrosXMLException("Error al escribir XML de curso " + e.getMessage());
 		}
 	}
+	
+	public List <Libro> leerXMLLibros (String pathFile) throws XMLExportException{
+		try {
+			XmlMapper mapper = new XmlMapper();
+			File file = new File(pathFile);
+			Libros libro = mapper.readValue(file, Libros.class);
+			
+			
+			return libro.getLibros();
+			
+		} catch (IOException e) {
+		e.printStackTrace();
+			throw new XMLExportException("error ",e);
+		}
+	}
 
 }

@@ -5,12 +5,26 @@ import java.util.List;
 
 import ej4.modelo.Libro;
 import ej8.xml.LibrosXMLException;
+import eje10.xml.XMLExportException;
 import eje10.xml.XMLJacksonService;
 
 public class App {
 
 	public static void main(String[] args) {
 		testCrearXMLLibro();
+		testLeerLibro();
+	}
+
+	private static void testLeerLibro() {
+		XMLJacksonService service = new XMLJacksonService();
+		List<Libro> libros;
+		try {
+			libros = service.leerXMLLibros("/C:/temporal/jacksonLibros.xml");
+			System.out.println(libros);
+		} catch (XMLExportException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private static void testCrearXMLLibro() {
@@ -28,5 +42,7 @@ public class App {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 }
