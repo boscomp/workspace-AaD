@@ -7,6 +7,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
 import ejemplo.modelo.Equipo;
+import ejemplo.modelo.Estadio;
+import ejemplo.modelo.Jugador;
+
 
 public class HibernateUtil {
 	private static SessionFactory sessionFactoy;
@@ -23,7 +26,7 @@ public class HibernateUtil {
 			ServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 			Metadata metadata = new MetadataSources(registry)
 					// Aquí añadimos las entidades que queremos mapear
-					.addAnnotatedClass(Equipo.class).getMetadataBuilder().build();
+					.addAnnotatedClass(Jugador.class).addAnnotatedClass(Equipo.class).addAnnotatedClass(Estadio.class).getMetadataBuilder().build();
 			sessionFactoy = metadata.getSessionFactoryBuilder().build();
 		} catch (Exception e) {
 			throw new ExceptionInInitializerError(e);
