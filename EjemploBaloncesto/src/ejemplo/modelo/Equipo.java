@@ -10,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 // import jakarta.persistence.Table;
@@ -34,7 +36,11 @@ public class Equipo {
 	@OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 
 	private List <Jugador> jugadores;
-	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "socios_equipos", 
+		joinColumns = {@JoinColumn(name = "id_equipo")},
+		inverseJoinColumns = {@JoinColumn(name="id_socio")})
+	private List <Socio> socios;
 	public Long getId() {
 		return id;
 	}
@@ -45,6 +51,14 @@ public class Equipo {
 
 	public Integer getNumJugadores() {
 		return numJugadores;
+	}
+
+	public List<Socio> getSocios() {
+		return socios;
+	}
+
+	public void setSocios(List<Socio> socios) {
+		this.socios = socios;
 	}
 
 	public void setNumJugadores(Integer jugadores) {

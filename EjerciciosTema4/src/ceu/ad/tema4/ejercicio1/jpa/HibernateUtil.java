@@ -1,4 +1,4 @@
-package ejemplo.jpa;
+package ceu.ad.tema4.ejercicio1.jpa;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -6,10 +6,11 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
-import ejemplo.modelo.Equipo;
-import ejemplo.modelo.Estadio;
-import ejemplo.modelo.Jugador;
-import ejemplo.modelo.Socio;
+import ceu.ad.tema4.ejercicio1.modelo.Episodio;
+import ceu.ad.tema4.ejercicio1.modelo.Serie;
+import ceu.ad.tema4.ejercicio1.modelo.Temporada;
+import ceu.ad.tema4.ejercicio1.modelo.Trailer;
+
 
 
 public class HibernateUtil {
@@ -27,11 +28,10 @@ public class HibernateUtil {
 			ServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 			Metadata metadata = new MetadataSources(registry)
 					// Aquí añadimos las entidades que queremos mapear
-					.addAnnotatedClass(Socio.class).addAnnotatedClass(Jugador.class).addAnnotatedClass(Equipo.class).addAnnotatedClass(Estadio.class).getMetadataBuilder().build();
+					.addAnnotatedClass(Episodio.class).addAnnotatedClass(Serie.class).addAnnotatedClass(Temporada.class).addAnnotatedClass(Trailer.class).getMetadataBuilder().build();
 			sessionFactoy = metadata.getSessionFactoryBuilder().build();
 		} catch (Exception e) {
 			throw new ExceptionInInitializerError(e);
 		}
 	}
-
 }
