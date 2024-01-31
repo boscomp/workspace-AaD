@@ -5,11 +5,27 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+@Entity
 public class Pedido {
 	
+	@Id
+	@Column(name="uuid_pedido")
 	private UUID uidPedido;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="dni", nullable = false)
 	private Cliente cliente;
 	private Date fecha;
+	
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name="uuid_pedido", nullable = false)
 	private List<PedidoLinea> lineas;
 	
 

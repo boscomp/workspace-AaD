@@ -133,6 +133,7 @@ public class Test {
 		
 		for (int i = 0; i < numLineas; i++) {
 			PedidoLinea linea = new PedidoLinea();
+			linea.setUidLinea(null);
 			linea.setArticulo(articulos[i]);
 			linea.setCantidad(i+offsetCantidad);
 			pedido.getLineas().add(linea);

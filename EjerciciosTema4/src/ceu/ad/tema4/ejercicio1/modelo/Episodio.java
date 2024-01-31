@@ -1,5 +1,5 @@
 package ceu.ad.tema4.ejercicio1.modelo;
-
+ 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +13,7 @@ public class Episodio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -35,6 +35,4 @@ public class Episodio {
 		return "Episodio [id=" + id + ", titulo=" + titulo + "]";
 	}
 	
-	
-
 }

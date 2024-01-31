@@ -2,11 +2,35 @@ package ceu.ad.tema4.ejercicio2.modelo;
 
 import java.util.UUID;
 
+import org.hibernate.annotations.JdbcTypeCode;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="pedido_lineas")
 public class PedidoLinea {
+	@Id
+	@JdbcTypeCode(java.sql.Types.VARCHAR)
+	@Column(name="uuid_linea_pedido")
 	private UUID uidLinea;
+	
+	
+	@Column(name="num_linea")
 	private Integer numLinea;
+	
 	private Integer cantidad;
+	
+
+	@OneToOne
+	@JoinColumn(name="id_articulo", nullable = false)
 	private Articulo articulo;
+	
+	
 
 	public UUID getUidLinea() {
 		return uidLinea;

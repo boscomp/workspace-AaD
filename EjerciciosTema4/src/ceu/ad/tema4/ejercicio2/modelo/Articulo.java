@@ -1,9 +1,17 @@
 package ceu.ad.tema4.ejercicio2.modelo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+@Entity
 public class Articulo {
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String descripcion;
+	@Column(name= "codigo_barras")
 	private String codBarras;
 	
 	public Long getId() {
