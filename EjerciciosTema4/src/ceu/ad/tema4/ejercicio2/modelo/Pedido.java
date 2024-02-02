@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import org.hibernate.annotations.JdbcTypeCode;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -17,13 +20,18 @@ import jakarta.persistence.OneToMany;
 public class Pedido {
 	
 	@Id
+	@GeneratedValue
+	@JdbcTypeCode(java.sql.Types.VARCHAR)
 	@Column(name="uuid_pedido")
 	private UUID uidPedido;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="dni", nullable = false)
+	
+	@ManyToOne(fetch = FetchType.EAGER) //redundante (opcional) por ser toOne
+	@JoinColumn(name="dni_cliente", nullable = false) //join_column aqui porque tiene la freignkey
 	private Cliente cliente;
+	
 	private Date fecha;
 	
+	//no es ManyToMany pq pedidolinea tiene foreign key de pedido
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name="uuid_pedido", nullable = false)
 	private List<PedidoLinea> lineas;

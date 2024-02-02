@@ -37,10 +37,9 @@ public class PedidosClientesServiceImpl implements PedidosClientesService {
 	public Pedido crearPedido(Pedido pedido) throws PedidosClientesServiceException {
 		Session session = null;
 		try {
-			List<PedidoLinea> lineas=pedido.getLineas();
-			UUID ej = UUID.randomUUID();
-			for (PedidoLinea pedidoLinea : lineas) {
-				pedidoLinea.setUidLinea(ej);
+			
+			for (int i=0; i<pedido.getLineas().size(); i++) {
+				pedido.getLineas().get(i).setNumLinea(i+1);
 			}
 			session = HibernateUtil.getSessionFactoy().openSession();
 			session.getTransaction().begin();
@@ -159,7 +158,7 @@ public class PedidosClientesServiceImpl implements PedidosClientesService {
 			session = HibernateUtil.getSessionFactoy().openSession();
 			session.getTransaction().begin();
 // aqui hacemos la insercion !!
-			Pedido p1= session.get(Pedido.class, uuid);
+			Pedido p1= session.get(Pedido.class, UUID.fromString(uuid));
 			session.getTransaction().commit();
 			return p1;
 		} catch (PersistenceException e) {

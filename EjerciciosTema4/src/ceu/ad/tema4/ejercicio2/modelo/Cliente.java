@@ -15,8 +15,9 @@ public class Cliente {
 	private String nombre;
 	private String apellidos;
 	
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
-	// NO LLEVA CASCADE
+	//mappedby atributo Cliente de otra clase  //-tomany eager -toone lazy
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER) //Fetch por consultar, eager porque trae todo
+	// NO LLEVA CASCADE	no tiene cascade: ACTUALIZARCLIENTE()
 	private Set<Pedido> pedidos;
 	
 	public String getDni() {

@@ -6,8 +6,10 @@ import org.hibernate.annotations.JdbcTypeCode;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -15,6 +17,7 @@ import jakarta.persistence.Table;
 @Table(name="pedido_lineas")
 public class PedidoLinea {
 	@Id
+	@GeneratedValue
 	@JdbcTypeCode(java.sql.Types.VARCHAR)
 	@Column(name="uuid_linea_pedido")
 	private UUID uidLinea;
@@ -25,8 +28,8 @@ public class PedidoLinea {
 	
 	private Integer cantidad;
 	
-
-	@OneToOne
+	//no tiene cascade: CREARPEDIDO()
+	@ManyToOne
 	@JoinColumn(name="id_articulo", nullable = false)
 	private Articulo articulo;
 	
