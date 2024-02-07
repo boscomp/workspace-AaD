@@ -15,9 +15,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 @Entity
+@Table(name="centro_comercial")
 public class CentroComercial {
 	@Id
 	@GeneratedValue
@@ -30,11 +33,11 @@ public class CentroComercial {
 	
 	private String direccion;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="cod_pais", nullable = false)
 	private Pais pais;
 	
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="uuid_centro", nullable = false)
 	private List<Tienda> tiendas;
 	

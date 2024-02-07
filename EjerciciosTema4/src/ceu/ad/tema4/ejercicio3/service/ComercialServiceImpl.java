@@ -134,7 +134,10 @@ public class ComercialServiceImpl implements ComercialService {
 			}
 		}
 	}
-
+//	public void crearXMLCC(String uidCentro, String path) throws ComercialException, NotFoundException{
+//		CentroComercial cc = consultarCentroComercial(uidCentro);
+//		
+//	}
 	@Override
 	public void borrarTienda(Long idTienda) throws ComercialException {
 		Session session = null;
@@ -142,8 +145,8 @@ public class ComercialServiceImpl implements ComercialService {
 			session = HibernateUtil.getSessionFactoy().openSession(); 
 
 			session.getTransaction().begin();
-			session.get(Tienda.class, idTienda);
-			session.remove(idTienda);
+			Tienda t=session.get(Tienda.class, idTienda);
+			session.remove(t);
 			session.getTransaction().commit();
 			
 		} 
@@ -168,8 +171,8 @@ public class ComercialServiceImpl implements ComercialService {
 			session = HibernateUtil.getSessionFactoy().openSession();
 			session.getTransaction().begin();
 // aqui hacemos la insercion !!
-			session.get(CentroComercial.class, UUID.fromString(uuidCentro));
-			session.remove(UUID.fromString(uuidCentro));
+			CentroComercial c=session.get(CentroComercial.class, UUID.fromString(uuidCentro));
+			session.remove(c);
 			session.getTransaction().commit();
 		
 		} catch (PersistenceException e) {
